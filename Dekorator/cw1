@@ -1,0 +1,6 @@
+W przypadku języka Java wzorzec projektowy dekorator jest dość często używany w bibliotece standardowej.
+Za przykład mogą tu posłużyć strumienie wykorzystywane przy operacjach na plikach. InputStream jest klasą abstrakcyjną,
+która posiada wiele dekoratorów, na przykład FileInputStream czy BufferedInputStream.
+Innym przykładem, również z języka Java, mogą być dekoratory kolekcji. Dekoratory te na przykład pozwalają na utworzenie kolekcji,
+która jest synchronizowana czy niemodyfikowalna. Collections zawiera szereg metod zaczynających się od synchronized albo unmodifiable,
+które tworzą instancje dekoratorów.

@@ -1,0 +1,2 @@
+Wzorzec obserwator używany jest do powiadamiania zainteresowancy obiektów o zmianie stanu pewnego innego obiektu.
+Obserwator jest stosowany w aplikacjach z graficznym interfejsem użytkownika.
