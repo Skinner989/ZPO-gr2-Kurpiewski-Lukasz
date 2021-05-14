@@ -1,0 +1,2 @@
+Wzorzec Singleton stotujemy gdy w programie ma prawo istnieć wyłącznie jeden ogólnodostępny obiekt danej klasy.
+Przykładem może być połączenie z bazą danych, którego używa wiele fragmentów programu.

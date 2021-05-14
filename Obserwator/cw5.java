@@ -52,7 +52,7 @@ public class cw5
         {
             for (Obserwator o : obserwatorzy)
             {
-                o.update(tresc);
+                o.update(o.dane() + " " + tresc);
             }
         }
         public void wypiszSpolki()
@@ -86,26 +86,9 @@ public class cw5
             return imie + " " + nazwisko + ": Sprzedano " + iloscAkcji + " akcji spółki " + nazwa + " za " + gielda.wycena.get(gielda.spolki.indexOf(nazwa)) + " zł";
         }
 
-        @Override
-        public void update(String tresc)
+        public String dane()
         {
-            System.out.println(tresc);
-        }
-    }
-
-    public static class Bank implements Obserwator
-    {
-        String nazwaBanku;
-
-        Bank(String nazwa)
-        {
-            this.nazwaBanku = nazwa;
-        }
-
-        public String kupSpolke(Gielda gielda, String nazwa, int iloscAkcji)
-        {
-            gielda.powiadomObserwatorow(nazwaBanku + ": Kupiono " + iloscAkcji + " akcji spółki " + nazwa + " za " + gielda.wycena.get(gielda.spolki.indexOf(nazwa)) + " zł");
-            return nazwa + ": Kupiono " + iloscAkcji + " akcji spółki " + nazwa + " za " + gielda.wycena.get(gielda.spolki.indexOf(nazwa)) + " zł";
+            return imie + " " + nazwisko;
         }
 
         @Override
@@ -114,10 +97,33 @@ public class cw5
             System.out.println(tresc);
         }
     }
+
+//    public static class Bank implements Obserwator
+//    {
+//        String nazwaBanku;
+//
+//        Bank(String nazwa)
+//        {
+//            this.nazwaBanku = nazwa;
+//        }
+//
+//        public String kupSpolke(Gielda gielda, String nazwa, int iloscAkcji)
+//        {
+//            gielda.powiadomObserwatorow(nazwaBanku + ": Kupiono " + iloscAkcji + " akcji spółki " + nazwa + " za " + gielda.wycena.get(gielda.spolki.indexOf(nazwa)) + " zł");
+//            return nazwa + ": Kupiono " + iloscAkcji + " akcji spółki " + nazwa + " za " + gielda.wycena.get(gielda.spolki.indexOf(nazwa)) + " zł";
+//        }
+//
+//        @Override
+//        public void update(String tresc)
+//        {
+//            System.out.println(tresc);
+//        }
+//    }
 
     public interface Obserwator
     {
         void update(String tresc);
+        String dane();
     }
 
     public interface Podmiot
@@ -131,12 +137,12 @@ public class cw5
     {
         Gielda gielda1 = new Gielda();
         InwestorIndywidualny inwestor1 = new InwestorIndywidualny("Adam", "Nowak");
-        Bank bank1 = new Bank("Bank testowy1");
+//        Bank bank1 = new Bank("Bank testowy1");
         gielda1.dodajSpolke("test1", 200);
         gielda1.dodajSpolke("test2", 30000);
         gielda1.dodajObserwatora(inwestor1);
-        gielda1.dodajObserwatora(bank1);
-        bank1.kupSpolke(gielda1, "test2", 20);
+//        gielda1.dodajObserwatora(bank1);
+//        bank1.kupSpolke(gielda1, "test2", 20);
         gielda1.dodajSpolke("test3", 100);
         inwestor1.kupSpolke(gielda1,"test1", 10);
         gielda1.zmienCene("test3", 95.00);

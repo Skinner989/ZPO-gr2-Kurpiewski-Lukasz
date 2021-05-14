@@ -1,0 +1,3 @@
+Metoda szablonowa jest dość powszechnie stosowana we frameworkach Java. Twórcy oprogramowania często za jej pomocą dają
+użytkownikom frameworku możliwość rozszerzenia jego standardowej funkcjonalności poprzez dziedziczenie. Metoda ta jest
+też stosowana także w innych frameworkach.
