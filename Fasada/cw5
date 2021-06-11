@@ -1,0 +1,2 @@
+Adapter jest używany, gdy klasa musi respektować określony interfejs i musi obsługiwać zachowanie polimorficzne.
+Fasada jest używana, gdy chcemy mieć łatwiejszy lub prostszy interfejs do pracy.

@@ -1,22 +1,22 @@
 package ZPO.Stan;
 
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class cw3
 {
     public static void main(String[] args)
     {
         Autoryzacja test1 = new Autoryzacja();
-        test1.sprawdz("testLogin", "testHaslo");
+        test1.sprawdz();
         Autoryzacja test2 = new Autoryzacja();
-        test2.sprawdz("zly login1", "zle haslo1");
-        test2.sprawdz("zly login2", "zle haslo2");
-        test2.sprawdz("zly login3", "zle haslo3");
-        test2.sprawdz("testLogin", "testHaslo");
+        test2.sprawdz();
+        test2.sprawdz();
+        test2.sprawdz();
     }
 
     public interface Stan {
-        public void sprawdz(String login, String haslo);
+        public void sprawdz();
     }
 
     public static class Autoryzacja
@@ -43,8 +43,8 @@ public class cw3
             return stan;
         }
 
-        void sprawdz(String login, String haslo) {
-            stan.sprawdz(login, haslo);
+        void sprawdz() {
+            stan.sprawdz();
         }
 
         Stan getStanSprawdzania() {
@@ -73,11 +73,16 @@ public class cw3
         SprawdzanieStan(Autoryzacja autoryzacja) {
             this.autoryzacja = autoryzacja;
         }
-        public void sprawdz(String login, String haslo) {
-            if((login.equals(this.login)) && (haslo.equals(this.haslo)))
+        public void sprawdz() {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Podaj login:");
+            String podanyLogin = scan.nextLine();
+            System.out.println("Podaj haslo");
+            String podaneHaslo = scan.nextLine();
+            if((podanyLogin.equals(this.login)) && (podaneHaslo.equals(this.haslo)))
             {
                 autoryzacja.setStan(autoryzacja.getStanAutoryzacjiPoprawnej());
-                autoryzacja.sprawdz(login, haslo);
+                autoryzacja.sprawdz();
             }
             else
             {
@@ -86,12 +91,12 @@ public class cw3
                 {
                     this.licznik = 0;
                     autoryzacja.setStan(autoryzacja.getStanBleduAutoryzacji3Razy());
-                    autoryzacja.sprawdz(login, haslo);
+                    autoryzacja.sprawdz();
                 }
                 else
                 {
                     autoryzacja.setStan(autoryzacja.getStanBleduAutoryzacji());
-                    autoryzacja.sprawdz(login, haslo);
+                    autoryzacja.sprawdz();
                 }
             }
         }
@@ -101,7 +106,7 @@ public class cw3
     {
         AutoryzacjaPoprawnaStan(Autoryzacja autoryzacja) {
         }
-        public void sprawdz(String login, String haslo) {
+        public void sprawdz() {
             System.out.println("Zalogowano");
         }
     }
@@ -112,7 +117,7 @@ public class cw3
         {
             this.autoryzacja = autoryzacja;
         }
-        public void sprawdz(String login, String haslo)
+        public void sprawdz()
         {
             System.out.println("Niepoprawny login lub hasło");
             autoryzacja.setStan(autoryzacja.getStanSprawdzania());
@@ -126,7 +131,7 @@ public class cw3
         BladAutoryzacji3RazyStan(Autoryzacja autoryzacja) {
             this.autoryzacja = autoryzacja;
         }
-        public void sprawdz(String login, String haslo)
+        public void sprawdz()
         {
             GregorianCalendar gc = new GregorianCalendar();
             if (czas == -1l)
@@ -135,7 +140,7 @@ public class cw3
             }
             if ((gc.getTime().getTime() - czas) >= 30000) {
                 autoryzacja.setStan(autoryzacja.getStanSprawdzania());
-                autoryzacja.getStan().sprawdz(login, haslo);
+                autoryzacja.getStan().sprawdz();
                 czas = -1l;
                 return;
             }
